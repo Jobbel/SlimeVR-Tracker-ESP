@@ -58,7 +58,8 @@ void setUpWiFi() {
     WiFi.mode(WIFI_STA);
 #ifdef ESP8266
     WiFi.hostname("SlimeVR FBT Tracker");
-#else
+#elif ESP32
+    WiFi.config(INADDR_NONE, INADDR_NONE, INADDR_NONE, INADDR_NONE); // required to set hostname properly
     WiFi.setHostname("SlimeVR FBT Tracker");
 #endif
     Serial.printf("[NOTICE] WiFi: Loaded credentials for SSID %s and pass length %d\n", WiFi.SSID().c_str(), WiFi.psk().length());
