@@ -56,7 +56,11 @@ void setUpWiFi() {
     Serial.println("[NOTICE] WiFi: Setting up WiFi");
     WiFi.persistent(true);
     WiFi.mode(WIFI_STA);
+#ifdef ESP8266
     WiFi.hostname("SlimeVR FBT Tracker");
+#else
+    WiFi.setHostname("SlimeVR FBT Tracker");
+#endif
     Serial.printf("[NOTICE] WiFi: Loaded credentials for SSID %s and pass length %d\n", WiFi.SSID().c_str(), WiFi.psk().length());
     wl_status_t status = WiFi.begin(); // Should connect to last used access point, see https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/station-class.html#begin
     Serial.printf("[NOTICE] Status: %d", status);
